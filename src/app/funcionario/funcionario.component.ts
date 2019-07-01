@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule , NgForm} from '@angular/forms';
+import { esmalteriaSettings  } from '../config';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 
 @Component({
@@ -8,30 +11,30 @@ import { FormsModule , NgForm} from '@angular/forms';
   styleUrls: ['./funcionario.component.css']
 })
 export class FuncionarioComponent implements OnInit {
+  private headers = {
+    headers: new HttpHeaders({
+    'Access-Control-Allow-Origin':'*',
+    "Accept":"application/json",
+    "Content-Type":"application/json",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Methods":"GET, POST",
+    "Access-Control-Allow-Headers": "Content-Type, Accept"
 
-  constructor() { }
-
+    })
+  } 
+  constructor(private  config : esmalteriaSettings, private http: HttpClient) { }
+  public funcionario;
   ngOnInit() {
+    this.http.get(this.config.URL_BASE+'funcionario/', this.headers)
+    .subscribe( data=>{  this.funcionario = data;console.log(this.funcionario);
+     
+    },
+    error => {
+      console.log(error)
+    });
   }
 
-  public funcionario = [
-    {
-        "id": "3",
-        "nome": "ramon domingos duarte ",
-        "username": "ramondomingos",
-        "senha": "e10adc3949ba59abbe56e057f20f883e",
-        "nivel": "2",
-        "ativo": "1"
-    },
-    {
-        "id": "4",
-        "nome": "jefer araujo ",
-        "username": "jeffer",
-        "senha": "e10adc3949ba59abbe56e057f20f883e",
-        "nivel": "2",
-        "ativo": "1"
-    }
-];
+  
 public novo = {
   nome :"", username: "", senha : "", nivel: ""   
 }
@@ -45,8 +48,7 @@ resetsenha(id){
 addfuncionario(form: NgForm){
 
   if(form.controls['nome'].value.length > 3 && form.controls['senha'].value.length > 0 && form.controls['nivel'].value.length > 0){
-    console.log(form.controls['nivel']);
+    console.log(form.value);
   } 
-  console.log(form.submitted);
 }
 }
