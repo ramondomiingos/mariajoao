@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./agenda.component.css']
 })
 export class AgendaComponent implements OnInit {
-
+public dia= Date.now();
   constructor() { }
 
   ngOnInit() {
   }
-
+  consultadata(){
+    console.log(this.dia);
+  }
 }
