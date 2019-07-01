@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , NgForm} from '@angular/forms';
 
 
 @Component({
@@ -44,8 +43,10 @@ resetsenha(id){
   console.log("reset"+id);
 }
 addfuncionario(form: NgForm){
+
   if(form.controls['nome'].value.length > 3 && form.controls['senha'].value.length > 0 && form.controls['nivel'].value.length > 0){
-    console.log(form.controls['nome']);
-  }
+    console.log(form.controls['nivel']);
+  } 
+  console.log(form.submitted);
 }
 }
