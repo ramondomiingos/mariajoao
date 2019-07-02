@@ -11,22 +11,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./funcionario.component.css']
 })
 export class FuncionarioComponent implements OnInit {
-  private headers = {
-    headers: new HttpHeaders({
-    'Access-Control-Allow-Origin':'*',
-    "Accept":"application/json",
-    "Content-Type":"application/json",
-    "Access-Control-Allow-Credentials": "true",
-    "Access-Control-Allow-Methods":"GET, POST",
-    "Access-Control-Allow-Headers": "Content-Type, Accept"
 
-    })
-  } 
   constructor(private  config : esmalteriaSettings, private http: HttpClient) { }
   public funcionario;
   ngOnInit() {
-    this.http.get(this.config.URL_BASE+'funcionario/', this.headers)
-    .subscribe( data=>{  this.funcionario = data;console.log(this.funcionario);
+    this.http.get(this.config.URL_BASE+'funcionario/')
+    .subscribe( data=>{  this.funcionario = data;
      
     },
     error => {
@@ -40,7 +30,13 @@ public novo = {
 }
   
 desativar(id){
-  console.log("desativar"+id);
+var params = {"id" :id, "ativo": false}
+  this.http.put(this.config.URL_BASE+'funcionario/', params)
+  .subscribe( data=>{ console.log(data);
+  },
+  error => {
+    console.log(error)
+  });
 }
 resetsenha(id){
   console.log("reset"+id);
