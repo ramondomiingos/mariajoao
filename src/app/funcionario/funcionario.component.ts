@@ -4,7 +4,6 @@ import { esmalteriaSettings  } from '../config';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
-
 @Component({
   selector: 'app-funcionario',
   templateUrl: './funcionario.component.html',
@@ -26,25 +25,42 @@ export class FuncionarioComponent implements OnInit {
 
   
 public novo = {
-  nome :"", username: "", senha : "", nivel: ""   
-}
+  nome :"", username: "", senha : "", nivel: ""   };
   
+ //{'content-type': 'application/json', 'Accept':'application/json'};
+ public mensagem = false ;
+ public texto = "" ;
 desativar(id){
-var params = {"id" :id, "ativo": false}
-  this.http.put(this.config.URL_BASE+'funcionario/', params)
-  .subscribe( data=>{ console.log(data);
+
+  
+var params = {"id" :id, "ativo": false, "action": "put"};
+
+  this.http.post(this.config.URL_BASE+'funcionario/', params)
+  .subscribe( data=>{  this.ngOnInit();
   },
   error => {
-    console.log(error)
   });
+  this.ngOnInit();
 }
 resetsenha(id){
-  console.log("reset"+id);
+  var params = {"id" :id, "senha": "123456", "action": "put" }
+  this.http.post(this.config.URL_BASE+'funcionario/', params)
+  .subscribe( data=>{ 
+  },
+  error => {
+  });
 }
 addfuncionario(form: NgForm){
 
-  if(form.controls['nome'].value.length > 3 && form.controls['senha'].value.length > 0 && form.controls['nivel'].value.length > 0){
-    console.log(form.value);
+  if(form.controls['nome'].value.length> 3 && form.controls['senha'].value.length > 0 && form.controls['nivel'].value.length > 0){
+ console.log(form.value);
+    this.http.post(this.config.URL_BASE+'funcionario/', form.value)
+  .subscribe( data=>{ this.ngOnInit();
+     this.mensagem = true;this.texto = "Usuário adicionado! "
+  },
+  error => {
+    console.log(error);
+  });
   } 
 }
 }
