@@ -15,13 +15,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   public user = new Usuario();
+  public mensagem = "";
   constructor(private router:Router, private  config : esmalteriaSettings, private http: HttpClient) { }
 
   ngOnInit() {
   }
   logar(form: NgForm) {
-    
-  
+    console.log(form.value);
  if(form.controls['username'].value.length > 3 && form.controls['senha'].value.length > 0 ){
   this.http.post(this.config.URL_BASE+'login/', form.value)
   .subscribe( data=>{ console.log(data);
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   },
   error => {
     console.log(error);
+    this.mensagem = "Usuário ou senha incorreto."
   });
     }
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 import { HttpClientModule } from '@angular/common/http';
-
+import {NgxMaskModule} from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { UserbarComponent } from './userbar/userbar.component';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
 import { esmalteriaSettings } from './config';
+import { ClienteComponent } from './cliente/cliente.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { esmalteriaSettings } from './config';
     MenubarComponent,
     AgendaComponent,
     UserbarComponent,
-    FuncionarioComponent
+    FuncionarioComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { esmalteriaSettings } from './config';
     FormsModule,
     DlDateTimeDateModule,  
     DlDateTimePickerModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [esmalteriaSettings],
   bootstrap: [AppComponent]

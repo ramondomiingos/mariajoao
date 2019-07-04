@@ -1,0 +1,277 @@
+<script src="./assets/jquery.min.js"></script>
+    <script type="text/javascript" src="./assets/jquery.mask.js"></script>
+<!-- Sidenav -->
+<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+    <div class="container-fluid">
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Brand -->
+      <a class="navbar-brand pt-0" href="./index.html">
+        <img src="./assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+      </a>
+      <!-- User -->
+      <ul class="nav align-items-center d-md-none">
+        <li class="nav-item dropdown">
+          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="ni ni-bell-55"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="media align-items-center">
+              <span class="avatar avatar-sm rounded-circle">
+                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
+              </span>
+            </div>
+          </a>
+          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+            <div class=" dropdown-header noti-title">
+              <h6 class="text-overflow m-0">Welcome!</h6>
+            </div>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-single-02"></i>
+              <span>My profile</span>
+            </a>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-settings-gear-65"></i>
+              <span>Settings</span>
+            </a>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-calendar-grid-58"></i>
+              <span>Activity</span>
+            </a>
+            <a href="./examples/profile.html" class="dropdown-item">
+              <i class="ni ni-support-16"></i>
+              <span>Support</span>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#!" class="dropdown-item">
+              <i class="ni ni-user-run"></i>
+              <span>Logout</span>
+            </a>
+          </div>
+        </li>
+      </ul>
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Collapse header -->
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="./index.html">
+                <img src="./assets/img/brand/blue.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Form -->
+        
+        <!-- Navigation -->
+        <app-menubar></app-menubar>
+      </div>
+    </div>
+  </nav>
+  <!-- Main content -->
+  <div class="main-content">
+    <!-- Top navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">Clientes
+        </a>
+        
+        <!-- Form -->
+        
+        <!-- User -->
+        <app-userbar></app-userbar>
+      </div>
+    </nav>
+    <!-- Header -->
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      
+
+      <!---->
+      <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <h3 class="mb-0">Clientes</h3>
+        
+        
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalAdd">Adicionar</button>
+
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">telefone</th>
+
+                        <th scope="col">Açao</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let cliente of clientes;">
+                        <th scope="row" >
+                          <div class="media align-items-center">
+                            
+                            <div class="media-body">
+                              <span class="mb-0 text-sm" style="text-transform: capitalize">{{cliente.nome}}</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                         {{ cliente.telefone | mask: '(00) 00000-0000' }}
+                        </td>
+                        
+                        <td class="text-right">
+                                <div class="dropdown">
+                                  <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                  </a>
+                                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                    <a class="dropdown-item" >Agendar</a>
+                                    <a class="dropdown-item" >Editar</a>
+                                  </div>
+                                </div>
+                              </td>
+                        
+                      
+                    
+                      </tr>
+                      
+               
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer py-4">
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+      <!---->
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="row align-items-center justify-content-xl-between">
+          <div class="col-xl-6">
+            <div class="copyright text-center text-xl-left text-muted">
+              &copy; 2018 <a href="#" class="font-weight-bold ml-1" target="_blank">Maria João</a>
+            </div>
+          </div>
+         
+        </div>
+      </footer>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Já vai?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Você deseja sair do programa? aperte em Logout para isso,  ou cancele a ação!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="logout()" data-dismiss="modal">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" >Adicionar Cliente</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+                <form  role="form" #myform="ngForm" (ngSubmit)="addcliente(myform)" >
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <input  class="form-control" name="nome"  placeholder="Nome" ngModel required>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                                <div class="form-group">
+                                        <label for="telefone">Telefone</label>
+                                  <input  class="form-control" name="telefone"  placeholder="(XX) xxxx xxxxx" ngModel mask='(00) 00000-0000' required>
+                                </div>
+                              </div>
+                          
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                                <label for="exampleFormControlSelect1">Senha</label>
+
+                                <input   class="form-control" name="nascimento" type="date"  placeholder="data" ngModel > 
+                                
+
+                          </div>
+                          <div class="col-md-6">
+                                <label for="exampleFormControlSelect1">CPF</label>
+                                <input   class="form-control" name="cpf" id="cpf" type="text"  placeholder="000.000.000-00" ngModel mask='000.000.000-00' > 
+                                <input ngModel name="action" id="action" Value="INSERT" hidden>
+                          </div>    
+
+                        
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar
+                            </button>
+
+                        <button type="submit" class="btn btn-primary"  >Adicionar cliente</button>
+                        <div *ngIf = "mensagem" >
+                            <div class="alert alert-success" role="alert">
+                                <strong>Successo!</strong> Cliente cadastrado!
+                            </div>
+                        </div>
+
+                      </form>
+
+
+
+        </div>
+        
+      </div>
+    </div>
+  </div>
